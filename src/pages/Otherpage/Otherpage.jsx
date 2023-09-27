@@ -7,20 +7,20 @@ import viteLogo from '/vite.svg';
 import { Box, Typography } from '@mui/material';
 
 const OtherPage = () =>{
-    return(
-        <Box
+    return (
+		<Box
 			sx={{
 				display: 'flex',
 				justifyContent: 'center',
 				flexDirection: 'column',
 				alignItems: 'center',
-				width: '100vw',
-				height: '100vh',
+				width: '100%',
+				height: '100%',
 				background: '#1E1E1E',
 				margin: 0,
 				padding: 0,
 				color: '#fff',
-                gap: 3
+				gap: 3,
 			}}
 		>
 			<Box
@@ -33,9 +33,11 @@ const OtherPage = () =>{
 				<img src={reactLogo} className='logo react' alt='react logo' />
 			</Box>
 			<Typography variant='h2'>Other Page</Typography>
-            <Typography variant='p' color={'secondary'}>Parabens! Você navegou para outra página</Typography>
+			<Typography variant='p' color={'secondary'}>
+				Parabens! Você navegou para outra página
+			</Typography>
 		</Box>
-    )
+    );
 }
 
 export default OtherPage
