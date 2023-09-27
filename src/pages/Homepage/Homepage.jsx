@@ -1,10 +1,12 @@
 import { Box } from "@mui/material";
 import React from "react";
 
-export const Homepage = () =>{
+const Homepage = () =>{
     return(
         <Box>
-            teste
+            teste 1
         </Box>
     )
 }
+
+export default Homepage

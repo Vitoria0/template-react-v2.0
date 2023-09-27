@@ -11,16 +11,11 @@ import { CssBaseline } from '@mui/material';
 
 import { theme } from './theme/theme.jsx';
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-		<HashRouter>
 			<CssBaseline />
 			<ThemeProvider theme={theme}>
-					<Provider>
-						<App />
-					</Provider>
+				<App />
 			</ThemeProvider>
-		</HashRouter>
 	</React.StrictMode>,
 );

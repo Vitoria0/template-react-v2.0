@@ -6,5 +6,10 @@ const pages = Object.keys(context).map(path => {
 });
 
 export default pages.map(page => {
-	return { path: page.path.split('/').pop().split('.')[0], component: page.value };
+	return { 
+			 path: page.path.split('/').pop().split('.')[0], 
+			 component: page.value 
+			};
 });
+
+console.log(pages);

@@ -1,14 +1,14 @@
 import React from 'react';
+import './App.css';
 
 import { AppRoutes } from './AppRoutes';
-
-import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
 	return (
-		<React.Suspense>
-			<AppRoutes />
-		</React.Suspense>
+		<Router>
+			<AppRoutes/>
+		</Router>
 	);
 };
 
