@@ -4,44 +4,23 @@ import { responsiveFontSizes } from '@mui/material/styles';
 
 let theme = createTheme({
 	palette: {
-		type: 'light',
+		type: 'dark',
 		primary: {
-			main: '#AD73DA',
+			main: '#00A2FF',
 		},
 		secondary: {
-			main: '#710DBF',
+			main: '#95C3DD',
+		},
+		tertiary: {
+			main: '#074568',
 		},
 		text: {
-			primary: '#390760',
-			secondary: '#fff',
+			primary: '#DEF3FF',
+			secondary: '#074568',
+			tertiary: '#02121C',
 		},
 		background: {
-			default: '#710DBF',
-		},
-	},
-	typography: {
-		fontFamily: 'Poppins, sans-serif',
-		h1: {
-			fontWeight: '700',
-		},
-		h2: {
-			fontWeight: '700',
-		},
-		h3: {
-			fontWeight: '600',
-		},
-		h4: {
-			fontWeight: '500',
-		},
-		h5: {
-			fontWeight: '400',
-		},
-		h6: {
-			fontWeight: '300',
-		},
-		p: {
-			fontWeight: 'normal',
-			fontSize: '20px',
+			default: '#1E1E1E',
 		},
 	},
 });

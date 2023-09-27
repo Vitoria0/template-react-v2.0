@@ -1,12 +1,45 @@
-import { Box } from "@mui/material";
-import React from "react";
 
-const Homepage = () =>{
-    return(
-        <Box>
-            teste 1
-        </Box>
-    )
+import React from 'react';
+
+import reactLogo from '../../assets/svg/react.svg'
+import viteLogo from '/vite.svg';
+
+import { Box, Typography } from '@mui/material';
+import { Botao } from '../../components/Botao';
+
+const HomePage = () =>{
+    return (
+		<Box
+			sx={{
+				display: 'flex',
+				justifyContent: 'center',
+				flexDirection: 'column',
+				alignItems: 'center',
+				width: '100vw',
+				height: '100vh',
+				background: '#1E1E1E',
+				margin: 0,
+				padding: 0,
+				color: '#fff',
+				gap: 3,
+			}}
+		>
+			<Box
+				sx={{
+					display: 'flex',
+					gap: 5,
+				}}
+			>
+				<img src={viteLogo} className='logo ' alt='My logo' />
+				<img src={reactLogo} className='logo react' alt='react logo' />
+			</Box>
+			<Typography variant='h2'>Template React</Typography>
+			<Botao.Navigation page='OtherPage' />
+			<Typography variant='p' color={'secondary'}>
+				Esse é um exemplo de paragrafo que usa a cor primaria
+			</Typography>
+		</Box>
+    );
 }
 
-export default Homepage
+export default HomePage
