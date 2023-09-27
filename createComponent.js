@@ -38,9 +38,9 @@ const ${folderName} = () =>{
 				<img src={viteLogo} className='logo ' alt='My logo' />
 				<img src={reactLogo} className='logo react' alt='react logo' />
 			</Box>
-			<Typography variant='h2'>Template React</Typography>
+			<Typography variant='h2'>New Page</Typography>
             <Botao.Navigation page=' ' />
-            <Typography variant='p' color={'secondary'} align='center' >Esse é um exemplo de paragrafo que usa a cor primaria</Typography>
+            <Typography variant='p' color={'secondary'} align='center' >Parabens, Você criou uma página nova!</Typography>
 		</Box>
     )
 }
