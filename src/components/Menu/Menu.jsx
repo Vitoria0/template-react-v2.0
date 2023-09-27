@@ -7,7 +7,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import SettingsSharpIcon from '@mui/icons-material/SettingsSharp';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const MenuItem = ({ item, open }) => (
+const MenuItem = ({ item }) => (
 	<motion.div
 		initial={{ opacity: 0, x: -10 }}
 		animate={{ opacity: 1, x: 0 }}
@@ -21,7 +21,7 @@ const MenuItem = ({ item, open }) => (
 );
 
 export const Menu = () => {
-	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' });
 	const [open, setOpen] = useState(false);
 
 	const menuItems = [
@@ -43,79 +43,79 @@ export const Menu = () => {
 				display: 'flex',
 				justifyItems: 'start',
 				alignItems: 'start',
+				flexDirection: 'column',
+				background: '#0f0f0f',
+				height: '100vh',
+				position: isTabletOrMobile ? 'fixed' : 'relative',
+				zIndex: 9999,
 			}}
 		>
 			<Box
 				sx={{
+					background: '#2E2E2E',
+					width: '30px',
+					height: '30px',
 					display: 'flex',
-					justifyItems: 'start',
-					alignItems: 'start',
+					justifyContent: 'center',
+					alignItems: 'center',
+					margin: '1rem',
+					borderRadius: '99px',
+					cursor: 'pointer',
+					zIndex: 9999,
+					position: isTabletOrMobile ? 'fixed' : 'relative',
+				}}
+				onClick={() => setOpen(!open)}
+			>
+				<MenuIcon style={{ color: '#fff' }} />
+			</Box>
+			<List
+				sx={{
+					display: 'flex',
 					flexDirection: 'column',
-					background: '#0f0f0f',
-					height: '100vh',
+					px: isTabletOrMobile ? (open ? 1 : '0px') : 1,
+					width: isTabletOrMobile ? (open ? '200px' : '0px') : open ? '250px' : '60px',
+					justifyContent: 'start',
+					alignItems: 'center',
+					transition: 'all 0.5s ease-in-out',
+					mt: isTabletOrMobile ? '3rem' : 0,
 				}}
 			>
-				<Box
-					sx={{
-						background: '#2E2E2E',
-						width: '30px',
-						height: '30px',
-						display: 'flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-						margin: '1rem',
-						borderRadius: '99px',
-						cursor: 'pointer',
-						zIndex: 9999,
-					}}
-					onClick={() => setOpen(!open)}
-				>
-					<MenuIcon style={{ color: '#fff' }} />
-				</Box>
-				<List
-					sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						px: 1,
-						width: open ? '250px' : '60px',
-						justifyContent: 'start',
-						alignItems: 'center',
-						transition: 'all 0.5s ease-in-out',
-					}}
-				>
-					{menuItems.map(item => (
-						<ListItem
-							key={item.path}
-							component={NavLink}
-							to={item.path}
-							variant='contained'
+				{menuItems.map(item => (
+					<ListItem
+						key={item.path}
+						component={NavLink}
+						to={item.path}
+						variant='contained'
+						sx={{
+							minHeight: '2.5rem',
+							p: 1,
+							borderRadius: '5px',
+							gap: 1,
+							display: 'flex',
+							justifyContent: 'start',
+							alignItems: 'center',
+						}}
+					>
+						<ListItemIcon
 							sx={{
-								minHeight: '2.5rem',
-								p: 1,
-								borderRadius: '5px',
-								gap: 1,
+								minWidth: isTabletOrMobile ? '0px' : '30px',
+								visibility: isTabletOrMobile
+									? open
+										? 'visible'
+										: 'hidden'
+									: 'visible',
 								display: 'flex',
-								justifyContent: 'start',
 								alignItems: 'center',
+								transition: 'minWidth 0.5s ease-in-out',
+								justifyContent: 'center',
 							}}
 						>
-							<ListItemIcon
-								sx={{
-									minWidth: '30px',
-									display: 'flex',
-									alignItems: 'center',
-									justifyContent: 'center',
-								}}
-							>
-								{item.icon}
-							</ListItemIcon>
-							<AnimatePresence initial={true}>
-								{open && <MenuItem item={item} />}
-							</AnimatePresence>
-						</ListItem>
-					))}
-				</List>
-			</Box>
+							{item.icon}
+						</ListItemIcon>
+						<AnimatePresence initial={true}>{open && <MenuItem item={item} />}</AnimatePresence>
+					</ListItem>
+				))}
+			</List>
 		</Box>
 	);
 };
