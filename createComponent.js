@@ -1,4 +1,8 @@
+import fs from 'fs/promises';
+import path from 'path';
 
+async function createComponentInFolder(folderName) {
+	const componentContent = `
 import React from 'react';
 
 import reactLogo from '../../assets/svg/react.svg'
@@ -6,7 +10,7 @@ import viteLogo from '/vite.svg';
 
 import { Box, Button, Typography } from '@mui/material';
 
-const HomePage = () =>{
+const ${folderName} = () =>{
     return(
         <Box
 			sx={{
@@ -41,4 +45,27 @@ const HomePage = () =>{
     )
 }
 
-export default HomePage
+export default ${folderName}
+`;
+
+	const scriptDir = process.cwd();
+
+	const folderPath = path.join(scriptDir, 'src', 'pages', folderName);
+	const componentPath = path.join(folderPath, `${folderName}.jsx`);
+
+	try {
+		await fs.mkdir(folderPath, { recursive: true });
+		await fs.writeFile(componentPath, componentContent);
+		console.log(`Componente criado em src/pages/${folderName}/${folderName}.jsx`);
+	} catch (error) {
+		console.error('Ocorreu um erro ao criar o componente:', error);
+	}
+}
+
+if (process.argv.length !== 3) {
+	console.error('Uso: node createComponent.js <NomeDaPasta>');
+	process.exit(1);
+}
+
+const folderName = process.argv[2];
+createComponentInFolder(folderName);
