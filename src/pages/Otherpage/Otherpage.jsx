@@ -4,7 +4,7 @@ import React from 'react';
 import reactLogo from '../../assets/svg/react.svg'
 import viteLogo from '/vite.svg';
 
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 const OtherPage = () =>{
     return(
@@ -32,11 +32,8 @@ const OtherPage = () =>{
 				<img src={viteLogo} className='logo ' alt='My logo' />
 				<img src={reactLogo} className='logo react' alt='react logo' />
 			</Box>
-			<Typography variant='h2'>Template React</Typography>
-            <Button variant='contained'>
-                <Typography variant='p' color={'#FFF'}>Botão</Typography>
-            </Button>
-            <Typography variant='p' color={'secondary'}>Esse é um exemplo de paragrafo que usa a cor primaria</Typography>
+			<Typography variant='h2'>Other Page</Typography>
+            <Typography variant='p' color={'secondary'}>Parabens! Você navegou para outra página</Typography>
 		</Box>
     )
 }

@@ -4,11 +4,12 @@ import React from 'react';
 import reactLogo from '../../assets/svg/react.svg'
 import viteLogo from '/vite.svg';
 
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { Botao } from '../../components/Botao';
 
 const HomePage = () =>{
-    return(
-        <Box
+    return (
+		<Box
 			sx={{
 				display: 'flex',
 				justifyContent: 'center',
@@ -20,7 +21,7 @@ const HomePage = () =>{
 				margin: 0,
 				padding: 0,
 				color: '#fff',
-                gap: 3
+				gap: 3,
 			}}
 		>
 			<Box
@@ -33,12 +34,12 @@ const HomePage = () =>{
 				<img src={reactLogo} className='logo react' alt='react logo' />
 			</Box>
 			<Typography variant='h2'>Template React</Typography>
-            <Button variant='contained'>
-                <Typography variant='p' color={'#FFF'}>Botão</Typography>
-            </Button>
-            <Typography variant='p' color={'secondary'}>Esse é um exemplo de paragrafo que usa a cor primaria</Typography>
+			<Botao.Navigation page='OtherPage' />
+			<Typography variant='p' color={'secondary'}>
+				Esse é um exemplo de paragrafo que usa a cor primaria
+			</Typography>
 		</Box>
-    )
+    );
 }
 
 export default HomePage
