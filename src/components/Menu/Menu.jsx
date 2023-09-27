@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { NavLink } from 'react-router-dom';
 import { Box, List, ListItem, ListItemIcon, Typography } from '@mui/material';
@@ -23,6 +23,17 @@ const MenuItem = ({ item }) => (
 export const Menu = () => {
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' });
 	const [open, setOpen] = useState(false);
+	const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+	useEffect(() => {
+		const handlePathChange = () => {
+			setCurrentPath(window.location.pathname);
+		};
+
+		window.addEventListener('click', handlePathChange);
+
+		
+	}, []);
 
 	const menuItems = [
 		{
@@ -68,54 +79,67 @@ export const Menu = () => {
 			>
 				<MenuIcon style={{ color: '#fff' }} />
 			</Box>
-			<List
+			<Box
 				sx={{
-					display: 'flex',
-					flexDirection: 'column',
-					px: isTabletOrMobile ? (open ? 1 : '0px') : 1,
-					width: isTabletOrMobile ? (open ? '200px' : '0px') : open ? '250px' : '60px',
-					justifyContent: 'start',
-					alignItems: 'center',
-					transition: 'all 0.5s ease-in-out',
-					mt: isTabletOrMobile ? '3rem' : 0,
+					pt: isTabletOrMobile ? 7: 0,
 				}}
 			>
 				{menuItems.map(item => (
-					<ListItem
-						key={item.path}
-						component={NavLink}
-						to={item.path}
-						variant='contained'
+					<List
 						sx={{
-							minHeight: '2.5rem',
-							p: 1,
-							borderRadius: '5px',
-							gap: 1,
 							display: 'flex',
+							flexDirection: 'column',
+							px: isTabletOrMobile ? (open ? 1 : '0px') : 1,
+							width: isTabletOrMobile ? (open ? '200px' : '0px') : open ? '250px' : '60px',
 							justifyContent: 'start',
 							alignItems: 'center',
+							transition: 'all 0.5s ease-in-out',
+							gap: 1,
 						}}
 					>
-						<ListItemIcon
+						<ListItem
+							key={item.path}
+							component={NavLink}
+							to={item.path}
+							variant='contained'
 							sx={{
-								minWidth: isTabletOrMobile ? '0px' : '30px',
-								visibility: isTabletOrMobile
-									? open
-										? 'visible'
-										: 'hidden'
-									: 'visible',
+								minHeight: '2rem',
+								p: isTabletOrMobile ? (open ? 1 : 0) : 1,
+								borderRadius: '5px',
+								gap: 1,
 								display: 'flex',
+								justifyContent: 'start',
 								alignItems: 'center',
-								transition: 'minWidth 0.5s ease-in-out',
-								justifyContent: 'center',
+								background: item.path === currentPath ? '#2E2E2E' : 'transparent',
+								transition: 'all 0.3s ease-in-out',
+								'&:hover': {
+									background: '#2E2E2E',
+								},
 							}}
 						>
-							{item.icon}
-						</ListItemIcon>
-						<AnimatePresence initial={true}>{open && <MenuItem item={item} />}</AnimatePresence>
-					</ListItem>
+							<ListItemIcon
+								sx={{
+									minWidth: isTabletOrMobile ? '0px' : '30px',
+									visibility: isTabletOrMobile
+										? open
+											? 'visible'
+											: 'hidden'
+										: 'visible',
+									display: 'flex',
+									alignItems: 'center',
+									transition: 'minWidth 0.5s ease-in-out',
+									justifyContent: 'center',
+								}}
+							>
+								{item.icon}
+							</ListItemIcon>
+							<AnimatePresence initial={true}>
+								{open && <MenuItem item={item} />}
+							</AnimatePresence>
+						</ListItem>
+					</List>
 				))}
-			</List>
+			</Box>
 		</Box>
 	);
 };

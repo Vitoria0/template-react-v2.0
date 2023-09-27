@@ -34,7 +34,7 @@ const HomePage = () =>{
 				<img src={reactLogo} className='logo react' alt='react logo' />
 			</Box>
 			<Typography variant='h2'>Template React</Typography>
-			<Typography variant='p' color={'secondary'}>
+			<Typography variant='p' color={'secondary'} align='center'>
 				Esse é um exemplo de paragrafo que usa a cor primaria
 			</Typography>
 			<Botao.Navigation page='OtherPage' />

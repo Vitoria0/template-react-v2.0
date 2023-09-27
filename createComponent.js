@@ -40,7 +40,7 @@ const ${folderName} = () =>{
 			</Box>
 			<Typography variant='h2'>Template React</Typography>
             <Botao.Navigation page=' ' />
-            <Typography variant='p' color={'secondary'}>Esse é um exemplo de paragrafo que usa a cor primaria</Typography>
+            <Typography variant='p' color={'secondary'} align='center' >Esse é um exemplo de paragrafo que usa a cor primaria</Typography>
 		</Box>
     )
 }

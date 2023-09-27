@@ -33,7 +33,7 @@ const OtherPage = () =>{
 				<img src={reactLogo} className='logo react' alt='react logo' />
 			</Box>
 			<Typography variant='h2'>Other Page</Typography>
-			<Typography variant='p' color={'secondary'}>
+			<Typography variant='p' color={'secondary'} align='center'>
 				Parabens! Você navegou para outra página
 			</Typography>
 		</Box>
