@@ -12,6 +12,7 @@ export const Navigation = ({ page }) => {
 			onClick={handleNavigationClick}
 			sx={{
 				px: 4,
+				py:1.5,
 				transition: 'all 200ms ease-in-out',
 				'&:hover': {
 					border: 0,
