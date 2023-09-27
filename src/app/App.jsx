@@ -3,11 +3,14 @@ import './App.css';
 
 import { AppRoutes } from './AppRoutes';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Layout from '../layout/layout';
 
 const App = () => {
 	return (
 		<Router>
-			<AppRoutes/>
+			<Layout>
+				<AppRoutes />
+			</Layout>
 		</Router>
 	);
 };

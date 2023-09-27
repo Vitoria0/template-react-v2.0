@@ -15,8 +15,8 @@ const HomePage = () =>{
 				justifyContent: 'center',
 				flexDirection: 'column',
 				alignItems: 'center',
-				width: '100vw',
-				height: '100vh',
+				width: '100%',
+				height: '100%',
 				background: '#1E1E1E',
 				margin: 0,
 				padding: 0,
@@ -34,10 +34,10 @@ const HomePage = () =>{
 				<img src={reactLogo} className='logo react' alt='react logo' />
 			</Box>
 			<Typography variant='h2'>Template React</Typography>
-			<Botao.Navigation page='OtherPage' />
 			<Typography variant='p' color={'secondary'}>
 				Esse é um exemplo de paragrafo que usa a cor primaria
 			</Typography>
+			<Botao.Navigation page='OtherPage' />
 		</Box>
     );
 }
