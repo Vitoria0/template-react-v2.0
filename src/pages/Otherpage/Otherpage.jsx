@@ -35,7 +35,7 @@ const OtherPage = () =>{
 			</Box>
 			<Typography variant='h2'>Other Page</Typography>
 			<Typography variant='p' color={'secondary'} align='center'>
-				Parabens! Você navegou para outra página
+				Parabens! Você navegou para outra página.
 			</Typography>
 			<Typography variant='p' color={'secondary'} align='center' maxWidth={'30rem'}>
 				Caso queira criar uma nova página rode o comando{' '}
@@ -43,7 +43,7 @@ const OtherPage = () =>{
 			</Typography>
 			<Typography variant='p' color={'secondary'} align='center' maxWidth={'30rem'}>
 				Ah! E não esqueça de adicionar o seu novo objeto a lista <code>menuItems</code> presente no
-				componente <code>Menu</code>, para poder acessar a sua nova página pelo menu lateral
+				componente <code>Menu</code>, para poder acessar a sua nova página pelo menu lateral.
 			</Typography>
 		</Box>
     );
