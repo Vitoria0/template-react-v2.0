@@ -5,11 +5,12 @@ import reactLogo from '../../assets/svg/react.svg'
 import viteLogo from '/vite.svg';
 
 import { Box, Typography } from '@mui/material';
+
 import { Botao } from '../../components/Botao';
 
-const HomePage = () =>{
-    return (
-		<Box
+const NewPage = () =>{
+    return(
+        <Box
 			sx={{
 				display: 'flex',
 				justifyContent: 'center',
@@ -21,25 +22,23 @@ const HomePage = () =>{
 				margin: 0,
 				padding: 0,
 				color: '#fff',
-				gap: 3,
+                gap: 3
 			}}
 		>
 			<Box
-					sx={{
-						display: 'flex',
-						gap: 5,
-					}}
+				sx={{
+					display: 'flex',
+					gap: 5,
+				}}
 			>
 				<img src={viteLogo} className='logo ' alt='My logo' />
 				<img src={reactLogo} className='logo react' alt='react logo' />
 			</Box>
-			<Typography variant='h2'>Template React</Typography>
-			<Typography variant='p' color={'secondary'} align='center' maxWidth={'30rem'}>
-				Seja bem vindo a primeira página do template! Clique no botão abaixo ou use o menu lateral para navegar entre a aplicação
-			</Typography>
-			<Botao.Navigation page='OtherPage' />
+			<Typography variant='h2'>New Page</Typography>
+            <Botao.Navigation page=' ' />
+            <Typography variant='p' color={'secondary'} align='center' >Parabens, Você criou uma página nova!</Typography>
 		</Box>
-    );
+    )
 }
 
-export default HomePage
+export default NewPage
