@@ -6,8 +6,8 @@ const Layout = ({ children }) => {
 	return (
 		<Box sx={{
             display: 'flex',
-            width: '100vw',
-			height: '100vh',
+            width: '98.75vw',
+			minHeight: '100vh',
         }}>
 			<Menu />
 			<Box sx={{width: '100%',

@@ -5,6 +5,8 @@ import reactLogo from '../../assets/svg/react.svg'
 import viteLogo from '/vite.svg';
 
 import { Box, Typography } from '@mui/material';
+import Card3D from '../../components/Card3D';
+import background from '../../assets/img/card.png'
 
 const OtherPage = () =>{
     return (
@@ -37,10 +39,7 @@ const OtherPage = () =>{
 			<Typography variant='p' color={'secondary'} align='center'>
 				Parabens! Você navegou para outra página.
 			</Typography>
-			<Typography variant='p' color={'secondary'} align='center' maxWidth={'30rem'}>
-				Caso queira criar uma nova página rode o comando{' '}
-				<code>node createComponent.js NomeDaPagina</code> em seu terminal.
-			</Typography>
+			<Card3D dataImage={background} header={'text'} content={'content'}/>
 			<Typography variant='p' color={'secondary'} align='center' maxWidth={'30rem'}>
 				Ah! E não esqueça de adicionar o seu novo objeto a lista <code>menuItems</code> presente no
 				componente <code>Menu</code>, para poder acessar a sua nova página pelo menu lateral.

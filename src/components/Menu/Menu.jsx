@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { NavLink, useNavigate } from 'react-router-dom'; // Import useNavigate
-import { Box, List, ListItem, ListItemIcon, Typography, TextField, IconButton } from '@mui/material';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { Box, List, ListItem, ListItemIcon, Typography, TextField, Autocomplete } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import SettingsSharpIcon from '@mui/icons-material/SettingsSharp';
@@ -16,7 +16,7 @@ const MenuItem = ({ item }) => (
 		exit={{ opacity: 0, x: -10 }}
 		transition={{ duration: 0.3, ease: 'backIn' }}
 	>
-		<Typography variant='body1' color='#FFF'>
+		<Typography variant='body1' sx={{ color: 'text.primary' }}>
 			{item.name}
 		</Typography>
 	</motion.div>
@@ -24,72 +24,19 @@ const MenuItem = ({ item }) => (
 
 const keywordData = [
 	{
-		keyword: 'Seja',
-		page: ' ',
+		id: 1,
+		keyword: 'objeto',
+		page: 'OtherPage',
 	},
 	{
-		keyword: 'bem',
-		page: ' ',
-	},
-	{
+		id: 2,
 		keyword: 'vindo',
 		page: ' ',
 	},
 	{
-		keyword: 'aplicação',
-		page: ' ',
-	},
-	{
-		keyword: 'template',
-		page: ' ',
-	},
-	{
-		keyword: 'menu',
-		page: ' ',
-	},
-	{
-		keyword: 'navegar',
-		page: ' ',
-	},
-	{
-		keyword: 'objeto',
-		page: 'OtherPage',
-	},
-	{
-		keyword: 'outra ',
-		page: 'OtherPage',
-	},
-	{
-		keyword: 'objeto',
-		page: 'OtherPage',
-	},
-	{
-		keyword: 'createComponent',
-		page: 'OtherPage',
-	},
-	{
-		keyword: 'node',
-		page: 'OtherPage',
-	},
-	{
-		keyword: 'NomeDaPagina ',
-		page: 'OtherPage',
-	},
-	{
-		keyword: 'terminal',
-		page: 'OtherPage',
-	},
-	{
-		keyword: 'menuItems',
-		page: 'OtherPage',
-	},
-	{
-		keyword: 'criou',
-		page: 'NewPage ',
-	},
-	{
+		id: 3,
 		keyword: 'nova',
-		page: 'NewPage ',
+		page: 'NewPage',
 	},
 ];
 
@@ -97,23 +44,18 @@ export const Menu = () => {
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' });
 	const [open, setOpen] = useState(false);
 	const [currentPath, setCurrentPath] = useState(window.location.pathname);
-	const [searchKeyword, setSearchKeyword] = useState('');
-	const navigate = useNavigate(); // Rename history to navigate
 
-	useEffect(() => {
-		const handlePathChange = () => {
-			setCurrentPath(window.location.pathname);
-		};
+	const [searchValue, setSearchValue] = useState('');
+	const navigate = useNavigate();
 
-		window.addEventListener('click', handlePathChange);
-
-		return () => {
-			window.removeEventListener('click', handlePathChange);
-		};
-	}, []);
+	const handleAutocompleteChange = (event, newValue) => {
+		setSearchValue(newValue);
+	};
 
 	const handleSearch = () => {
-		const result = keywordData.find(item => item.keyword.toLowerCase() === searchKeyword.toLowerCase());
+		const result = keywordData.find(
+			item => item.keyword.toLocaleLowerCase() === searchValue.toLocaleLowerCase(),
+		);
 
 		if (result) {
 			navigate(`/${result.page}`);
@@ -124,22 +66,22 @@ export const Menu = () => {
 
 	const menuItems = [
 		{
-			id: 0,
+			id: 1,
 			path: '/',
 			name: 'Home',
-			icon: <HomeIcon style={{ color: '#FFF', transform: 'scale(1)' }} />,
-		},
-		{
-			id: 1,
-			path: '/OtherPage',
-			name: 'OtherPage',
-			icon: <SettingsSharpIcon style={{ color: '#FFF', transform: 'scale(1)' }} />,
+			icon: <HomeIcon sx={{ color: 'text.primary', transform: 'scale(1)' }} />,
 		},
 		{
 			id: 2,
+			path: '/OtherPage',
+			name: 'OtherPage',
+			icon: <SettingsSharpIcon sx={{ color: 'text.primary', transform: 'scale(1)' }} />,
+		},
+		{
+			id: 3,
 			path: '/NewPage',
 			name: 'NewPage',
-			icon: <AddCircleIcon style={{ color: '#FFF', transform: 'scale(1)' }} />,
+			icon: <AddCircleIcon sx={{ color: 'text.primary', transform: 'scale(1)' }} />,
 		},
 	];
 
@@ -147,11 +89,9 @@ export const Menu = () => {
 		<Box
 			sx={{
 				display: 'flex',
-				justifyItems: 'start',
-				alignItems: 'start',
 				flexDirection: 'column',
 				background: '#0f0f0f',
-				height: '100vh',
+				minHeight: '100vh',
 				position: isTabletOrMobile ? 'fixed' : 'relative',
 				zIndex: 9999,
 			}}
@@ -172,7 +112,7 @@ export const Menu = () => {
 				}}
 				onClick={() => setOpen(!open)}
 			>
-				<MenuIcon style={{ color: '#fff' }} />
+				<MenuIcon sx={{ color: '#fff' }} />
 			</Box>
 			{open && (
 				<Box
@@ -181,6 +121,7 @@ export const Menu = () => {
 						justifyContent: 'center',
 						alignItems: 'center',
 						px: isTabletOrMobile ? (open ? 1 : '0px') : 1,
+						pt: isTabletOrMobile ? (open ? 8 : '0px') : 1,
 					}}
 				>
 					<Box
@@ -188,51 +129,67 @@ export const Menu = () => {
 							p: 1,
 						}}
 					>
-						<SearchIcon style={{ color: '#fff', maxWidth: '30px', maxHeight: '30px' }} />
+						<SearchIcon sx={{ color: 'text.primary', maxWidth: '30px', maxHeight: '30px' }} />
 					</Box>
-					<TextField
-						label='Pesquisar'
-						variant='filled'
-						value={searchKeyword}
+					<Autocomplete
 						fullWidth
-						style={{
-							color: '#FFF',
+						value={searchValue}
+						onChange={(event, newValue) => {
+							handleAutocompleteChange(event, newValue);
 						}}
+						options={keywordData.map(option => option.keyword)}
+						renderOption={(props, option) => (
+							<li
+								{...props}
+								style={{
+									color: '#0F4B55',
+									'&:hover': {
+										backgroundColor: '#E2EAE9',
+									},
+								}}
+							>
+								{option}
+							</li>
+						)}
+						renderInput={params => (
+							<TextField
+								{...params}
+								label='Digite sua dúvida aqui'
+								variant='standard'
+								sx={{
+									color: 'text.primary',
+									mt: 0,
+									borderRadius: '99px',
+									fontSize: { sm: '12px', md: '16px', xl: '18px' },
+									'& label': {
+										color: 'text.primary',
+									},
+									'.MuiAutocomplete-noOptions': {
+										color: 'text.primary',
+									},
+								}}
+								onKeyPress={e => {
+									if (e.key === 'Enter') {
+										handleSearch();
+									}
+								}}
+							/>
+						)}
+						noOptionsText='Que pena! Não encontramos item correspondente com essa pesquisa. Que tal tentar novamente?'
 						sx={{
-							'& .MuiInputLabel-root': {
-								color: '#FFF',
-								'&:hover': {
-									color: '#FFF',
-								},
-								'&.focused': {
-									color: '#FFF',
-								},
-							},
-							'& .MuiInput-root': {
-								color: '#FFF',
-								borderBottomColor: '#FFF',
-								'&:hover': {
-									borderBottomColor: '#FFF',
-									color: '#FFF',
-								},
-								'&.Mui-focused': {
-									color: '#FFF',
-									borderBottomColor: '#FFF',
-								},
-							},
-						}}
-						onChange={e => setSearchKeyword(e.target.value)}
-						onKeyPress={e => {
-							if (e.key === 'Enter') {
-								handleSearch();
-							}
+							fontSize: { sm: '12px', md: '16px', xl: '18px' },
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							borderRadius: '99px',
+							width: '80%',
+							bottom: 7,
 						}}
 					/>
 				</Box>
 			)}
 			<Box
 				sx={{
-					pt: isTabletOrMobile ? 7 : 0,
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'start',
@@ -240,20 +197,6 @@ export const Menu = () => {
 					transition: 'all 0.5s ease-in-out',
 				}}
 			>
-				{open ? (
-					' '
-				) : (
-					<Box
-						sx={{
-							p: isTabletOrMobile ? (open ? 1 : 0) : 1,
-							justifyContent: 'center',
-							alignmentBaseline: 'center',
-							ml: open ? ' ' : 1,
-						}}
-					>
-						<SearchIcon style={{ color: '#fff', maxWidth: '30px', maxHeight: '30px' }} />
-					</Box>
-				)}
 				{menuItems.map(item => (
 					<List
 						sx={{
